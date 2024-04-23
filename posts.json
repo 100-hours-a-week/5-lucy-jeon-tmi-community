@@ -1,0 +1,78 @@
+[
+  {
+    "postid": 1,
+    "title": "제목을 테스트 해보도록 하겠습니다. 26자가 넘어가면 글씨가 잘려야 합니다.",
+    "likes": 112342,
+    "cmts": 10000,
+    "views": 100000,
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 12,
+      "hour": 12,
+      "minute": 23,
+      "second": 34
+    },
+    "userimgurl": "/img/4.png",
+    "username": "user1",
+
+    "posttext": "본문내용입니다.",
+    "postimgurl": "/img/3.png",
+
+    "cmtwriter": "댓글 작성자 1",
+    "cmtwriterimg": "/img/3.png",
+    "cmtdate": 20210101080112,
+    "cmttext": "댓글 내용입니다"
+  },
+  {
+    "postid": 2,
+    "title": "제목 2 입니다",
+    "likes": 12,
+    "cmts": 2351,
+    "views": 3205,
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 12,
+      "hour": 12,
+      "minute": 23,
+      "second": 34
+    },
+    "userimgurl": "/img/2.png",
+    "username": "더미 작성자"
+  },
+  {
+    "postid": 3,
+    "title": "제목 3 이고요",
+    "likes": 45,
+    "cmts": 5433,
+    "views": 93826,
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 12,
+      "hour": 12,
+      "minute": 23,
+      "second": 34
+    },
+    "userimgurl": "/img/2.png",
+    "username": "더미 작성자"
+  },
+  {
+    "postid": 4,
+    "title": "제목 4 이어요",
+    "likes": 0,
+    "cmts": 0,
+    "views": 0,
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 12,
+      "hour": 12,
+      "minute": 23,
+      "second": 34
+    },
+    "userimgurl": "/img/2.png",
+    "username": "더미 작성자"
+  }
+]

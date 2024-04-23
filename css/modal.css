@@ -1,0 +1,69 @@
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 불투명도 50%인가? */
+  backdrop-filter: blur(10px);
+}
+.modal-body {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  /* 모듈창열었을때 위치설정 가운데로  */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  width: 408px;
+  height: 242px;
+
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.modal h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.64px;
+  text-align: center;
+}
+
+.modal span {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 23.87px;
+  text-align: center;
+}
+
+.bnt-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.modal button {
+  width: 127px;
+  height: 44px;
+  border-radius: 12px;
+  opacity: 0px;
+}
+
+#cancel-bnt {
+  background: #242424;
+  color: #ffffff;
+}
+
+#confirm-bnt {
+  background: #c4a5fa;
+  color: black;
+}
+
+.hidden {
+  display: none;
+}
