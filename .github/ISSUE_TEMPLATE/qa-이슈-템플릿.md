@@ -36,3 +36,5 @@ assignees: lucy726j
 
 **추가적인 내용:**
 여기에 문제에 대한 다른 컨텍스트를 추가해주세요.
+
+이슈 해결 후, git commit 시 이슈 ID로 close 예: git commit -m "[closed #1] 해결된 이슈 내용"
