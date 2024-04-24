@@ -1,3 +1,5 @@
+// import { response } from "express";
+
 const joinForm = document.querySelector(".info-form");
 const emailInput = document.getElementById("email-input");
 const pwInput = document.getElementById("pw-input");
@@ -9,14 +11,15 @@ const pwCheckHelper = document.getElementById("pw-check-helper");
 const nickHelper = document.getElementById("nickname-helper");
 const joinBnt = document.getElementById("join-bnt");
 
-let userEmail;
-let userNick;
-fetch("/user.json")
-  .then((response) => response.json())
-  .then((data) => {
-    userEmail = data[0].email;
-    userNick = data[0].nickname;
-  });
+// let userEmail;
+// let userNick;
+// fetch("/user.json");
+// .then((response) => response.json())
+// .then((data) => {
+//   userEmail = data.map((e) => e.email);
+//   userNick = data.map((e) => e.nickname);
+//   console.log(userEmail, userNick);
+// });
 
 let emailDone = false;
 let pwDone = false;
@@ -26,16 +29,27 @@ let nickDone = false;
 const emailCheck = (event) => {
   let emailValue = event.target.value;
   let emailRex = /^\w+@\w+\.[a-zA-Z]/i;
-  let already = userEmail === emailValue;
+  let already = false;
   // 글자수가 10자 미만일 때
   if (emailValue.length < 10 || !emailRex.test(emailValue)) {
     emailHelper.innerText =
       "* 올바른 이메일 주소 형식을 입력해주세요. (예 : example@example.com)";
     emailDone = false;
-  } else if (already) {
-    emailHelper.classList.remove("hidden");
-    emailHelper.innerText = "중복된 이메일입니다.";
-    emailDone = false;
+  } else if (!already) {
+    fetch("/user.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const email = data.map((e) => e.email);
+        const alreadyEmail = email.find((e) => e == emailValue);
+        if (alreadyEmail) {
+          emailHelper.classList.remove("hidden");
+          emailHelper.innerText = "중복된 이메일입니다.";
+          emailDone = false;
+        } else {
+          emailHelper.classList.add("hidden");
+          emailDone = true;
+        }
+      });
   } else {
     emailHelper.classList.add("hidden");
     emailDone = true;
@@ -95,11 +109,22 @@ const nickCheck = (event) => {
     nickHelper.innerText = "닉네임은 최대 10자까지 작성 가능합니다.";
     nickDone = false;
   } else {
-    let already = userNick === nickValue;
-    if (already) {
-      nickHelper.classList.remove("hidden");
-      nickHelper.innerText = "중복된 닉네임입니다.";
-      nickDone = false;
+    let already = false;
+    if (!already) {
+      fetch("/user.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const nickname = data.map((e) => e.nickname);
+          const alreadyNick = nickname.find((e) => e == nickValue);
+          if (alreadyNick) {
+            nickHelper.classList.remove("hidden");
+            nickHelper.innerText = "중복된 닉네임입니다.";
+            nickDone = false;
+          } else {
+            nickHelper.classList.add("hidden");
+            nickDone = true;
+          }
+        });
     } else {
       nickHelper.classList.add("hidden");
       nickDone = true;
@@ -119,7 +144,7 @@ const checkDone = () => {
 joinBnt.addEventListener("click", (event) => {
   event.preventDefault();
   if ((joinBnt.style.background = "#7F6AEE")) {
-    // 회원정보를 저장하고...
+    // 회원정보를 저장하고...는 백엔드에서
     // 로그인 페이지로 이동
     window.location.href = "/html/login.html";
   }

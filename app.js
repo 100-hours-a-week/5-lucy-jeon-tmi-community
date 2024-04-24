@@ -18,6 +18,7 @@ const port = 3000;
 // Express에서 정적 파일을 제공하기 위해서 express.static 메서드를 사용
 // public : 디렉터리 이름
 app.use(express.static(path.join(__dirname)));
+// app.use(bodyParser.json())
 
 // url(localhost:3000/)을 입력하면 login.html을 응답한다.
 app.get("/", (req, res) => {
