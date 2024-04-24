@@ -62,9 +62,10 @@ const pwCheck = (event) => {
       .then((response) => response.json())
       .then((data) => {
         const userData = data;
-        const userEmail = data.map((e) => e.email);
         // input 값과 동일한 user 찾기
+        const userEmail = data.map((e) => e.email);
         const matchEmail = userEmail.find((e) => e == emailInput.value);
+        console.log(emailInput.value);
         if (matchEmail) {
           // matchUser가 가진 비밀번호가 pw input값과 일치하는지 확인
           const loginUser = userData.find((e) => e.email == matchEmail);
