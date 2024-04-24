@@ -1,3 +1,5 @@
+// const { response } = require("express");
+
 const loginForm = document.querySelector("#login-form");
 const emailInput = document.querySelector("#email-input");
 const pwInput = document.querySelector("#pw-input");
@@ -22,7 +24,7 @@ const ValidCheck = () => {
 
 const emailCheck = (event) => {
   let emailRex = /^\w+@\w+\.[a-zA-Z]/i;
-  let emailVal = event.target.value;
+  let emailVal = emailInput.value;
   if (emailVal.length < 10) {
     helpTxt.classList.remove("hidden");
     helpTxt.innerText =
@@ -41,14 +43,11 @@ const emailCheck = (event) => {
 };
 
 const pwCheck = (event) => {
-  let pwRex =
+  const pwRex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/;
-  let pwVal = event.target.value;
-  const userPw = "Qlalf123!";
-  // const userPw = fetch("/user.json")
-  //   .then((response) => response.json())
-  //   .then((data) => data[0].password);
-  // console.log(userPw);
+  let pwVal = pwInput.value;
+  let joinChecked = false;
+
   if (pwVal.length < 1) {
     helpTxt.classList.remove("hidden");
     helpTxt.innerText = "비밀번호를 입력해주세요";
@@ -58,9 +57,29 @@ const pwCheck = (event) => {
     helpTxt.innerText =
       "비밀번호는 8자 이상 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.";
     pwValid = false;
-  } else if (pwVal !== userPw) {
-    helpTxt.classList.remove("hidden");
-    helpTxt.innerText = "비밀번호가 다릅니다.";
+  } else if (!joinChecked) {
+    fetch("/user.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const userData = data;
+        const userEmail = data.map((e) => e.email);
+        // input 값과 동일한 user 찾기
+        const matchEmail = userEmail.find((e) => e == emailInput.value);
+        if (matchEmail) {
+          // matchUser가 가진 비밀번호가 pw input값과 일치하는지 확인
+          const loginUser = userData.find((e) => e.email == matchEmail);
+          if (loginUser.password == pwInput.value) {
+            joinChecked = true;
+            helpTxt.classList.add("hidden");
+            pwValid = true;
+          } else {
+            joinChecked = false;
+            helpTxt.classList.remove("hidden");
+            helpTxt.innerText = "비밀번호가 다릅니다.";
+            pwValid = false;
+          }
+        }
+      });
   } else {
     helpTxt.classList.add("hidden");
     pwValid = true;
@@ -78,5 +97,7 @@ pwInput.addEventListener("focus", () => {
   pwCheck();
   ValidCheck();
 });
-emailInput.addEventListener("focusout", ValidCheck);
+emailInput.addEventListener("focusout", () => {
+  ValidCheck();
+});
 pwInput.addEventListener("focusout", ValidCheck);
