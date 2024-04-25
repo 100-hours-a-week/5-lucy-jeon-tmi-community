@@ -1,5 +1,7 @@
 // import { response } from "express";
 
+// import { response } from "express";
+
 const joinForm = document.querySelector(".info-form");
 const emailInput = document.getElementById("email-input");
 const pwInput = document.getElementById("pw-input");
@@ -11,23 +13,13 @@ const pwCheckHelper = document.getElementById("pw-check-helper");
 const nickHelper = document.getElementById("nickname-helper");
 const joinBnt = document.getElementById("join-bnt");
 
-// let userEmail;
-// let userNick;
-// fetch("/user.json");
-// .then((response) => response.json())
-// .then((data) => {
-//   userEmail = data.map((e) => e.email);
-//   userNick = data.map((e) => e.nickname);
-//   console.log(userEmail, userNick);
-// });
-
 let emailDone = false;
 let pwDone = false;
 let pwCheckDone = false;
 let nickDone = false;
 
 const emailCheck = (event) => {
-  let emailValue = event.target.value;
+  let emailValue = emailInput.value;
   let emailRex = /^\w+@\w+\.[a-zA-Z]/i;
   let already = false;
   // 글자수가 10자 미만일 때
@@ -36,7 +28,7 @@ const emailCheck = (event) => {
       "* 올바른 이메일 주소 형식을 입력해주세요. (예 : example@example.com)";
     emailDone = false;
   } else if (!already) {
-    fetch("/user.json")
+    const fetchEmail = fetch("/user.json")
       .then((response) => response.json())
       .then((data) => {
         const email = data.map((e) => e.email);
@@ -134,6 +126,7 @@ const nickCheck = (event) => {
 
 // 모든 유효성 검사를 통과했는지 확인
 const checkDone = () => {
+  console.log(emailDone, pwDone, pwCheckDone, nickDone);
   if (emailDone && pwDone && pwCheckDone && nickDone) {
     joinBnt.removeAttribute("disabled");
     joinBnt.style.background = "#7F6AEE";
@@ -144,8 +137,7 @@ const checkDone = () => {
 joinBnt.addEventListener("click", (event) => {
   event.preventDefault();
   if ((joinBnt.style.background = "#7F6AEE")) {
-    // 회원정보를 저장하고...는 백엔드에서
-    // 로그인 페이지로 이동
+    join();
     window.location.href = "/html/login.html";
   }
 });
@@ -183,3 +175,20 @@ pwCheckInput.addEventListener("focusout", checkDone);
 
 nickInput.addEventListener("focusout", nickCheck);
 nickInput.addEventListener("focusout", checkDone);
+
+function join() {
+  const req = {
+    email: emailInput.value,
+    password: pwInput.value,
+    nickname: nickInput.value,
+  };
+  fetch("/user.json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(req),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+}

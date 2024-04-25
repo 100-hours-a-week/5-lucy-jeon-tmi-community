@@ -11,6 +11,7 @@ const clickBox = document.querySelectorAll(".title-wrap");
 const postFetch = fetch("/posts.json")
   .then((response) => response.json())
   .then((data) => {
+    // forEach로 post div 추가하는 방식으로 변경하기 @!
     postList.innerHTML = Object.values(data)
       .map(
         (post) =>
@@ -74,3 +75,12 @@ wrtBnt.addEventListener("mouseout", () => {
 //     window.location.href = "/html/post-read.html";
 //   });
 // });
+
+const headerImg = document.getElementById("header-img");
+
+headerImg.addEventListener("click", () => {
+  const dropDown = document.querySelector(".dropdown");
+  dropDown.style.display == "block"
+    ? (dropDown.style.display = "none")
+    : (dropDown.style.display = "block");
+});

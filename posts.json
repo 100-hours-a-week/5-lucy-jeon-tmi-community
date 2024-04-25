@@ -18,11 +18,32 @@
 
     "posttext": "본문내용입니다.",
     "postimgurl": "/img/3.png",
-
-    "cmtwriter": "댓글 작성자 1",
-    "cmtwriterimg": "/img/3.png",
-    "cmtdate": 20210101080112,
-    "cmttext": "댓글 내용입니다"
+    "cmts-list": [
+      {
+        "cmtwriter": "댓글 작성자 1",
+        "cmtwriterimg": "/img/3.png",
+        "cmtdate": 20210101080112,
+        "cmttext": "댓글 내용입니다"
+      },
+      {
+        "cmtwriter": "댓글 작성자 1",
+        "cmtwriterimg": "/img/3.png",
+        "cmtdate": 20210101080112,
+        "cmttext": "댓글 내용입니다"
+      },
+      {
+        "cmtwriter": "댓글 작성자 1",
+        "cmtwriterimg": "/img/3.png",
+        "cmtdate": 20210101080112,
+        "cmttext": "댓글 내용입니다"
+      },
+      {
+        "cmtwriter": "댓글 작성자 1",
+        "cmtwriterimg": "/img/3.png",
+        "cmtdate": 20210101080112,
+        "cmttext": "댓글 내용입니다"
+      }
+    ]
   },
   {
     "postid": 2,

@@ -47,6 +47,9 @@ postInfo.addEventListener("click", (event) => {
 fetch("/posts.json")
   .then((response) => response.json())
   .then((data) => {
+    // forEach로 post div 추가 하기
+    // 댓글도 forEach로 추가하기?
+    // 변경되는 부분만 선언해서 추가하기? 구글링 필요
     const post = data[0];
     postInfo.innerHTML = `<div class="post-info" id="post-info">
         <div class="post-title">${post.title}</div>
@@ -119,3 +122,10 @@ fetch("/posts.json")
         </div>
       </div>`;
   });
+
+headerImg.addEventListener("click", () => {
+  const dropDown = document.querySelector(".dropdown");
+  dropDown.style.display == "block"
+    ? (dropDown.style.display = "none")
+    : (dropDown.style.display = "block");
+});
