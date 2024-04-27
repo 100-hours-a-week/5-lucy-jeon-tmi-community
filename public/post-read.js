@@ -44,13 +44,26 @@ postInfo.addEventListener("click", (event) => {
   }
 });
 
-fetch("/posts.json")
-  .then((response) => response.json())
-  .then((data) => {
-    // forEach로 post div 추가 하기
-    // 댓글도 forEach로 추가하기?
-    // 변경되는 부분만 선언해서 추가하기? 구글링 필요
-    const post = data[0];
+async function fetchPost() {
+  // 현재 url의 쿼리스트리를 분석
+  const urlParams = new URLSearchParams(window.location.search);
+
+  try {
+    const response = await fetch("/posts.json");
+    const postData = await response.json();
+    console.log(postData); //배열로 반환 -> JSON 형태로 파싱
+
+    const postId = urlParams.get("postId");
+    // JSON 파일의 postid와 쿼리스트링에서 추출한 postId를 비교해서 같은 게시물을 반환
+    const matchPost = postData.find((e) => e.postid == postId);
+    console.log(matchPost);
+    return matchPost;
+  } catch (error) {
+    console.error("Error fetching post : ", error);
+  }
+
+  // 이후에 matchPost를 매핑해주기
+  matchPost.map((post) => {
     postInfo.innerHTML = `<div class="post-info" id="post-info">
         <div class="post-title">${post.title}</div>
 
@@ -122,6 +135,7 @@ fetch("/posts.json")
         </div>
       </div>`;
   });
+}
 
 headerImg.addEventListener("click", () => {
   const dropDown = document.querySelector(".dropdown");
@@ -129,3 +143,5 @@ headerImg.addEventListener("click", () => {
     ? (dropDown.style.display = "none")
     : (dropDown.style.display = "block");
 });
+
+fetchPost();

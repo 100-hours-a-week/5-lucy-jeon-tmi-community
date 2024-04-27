@@ -1,11 +1,11 @@
+// const { response } = require("express");
+
 const wrtBnt = document.getElementById("wrt-bnt");
-const postList = document.querySelector(".posts");
 const title = document.querySelector(".post-title");
 const likes = document.querySelector(".likes");
 const cmts = document.querySelector(".cmts");
 const views = document.querySelector(".views");
-// const postBox = document.querySelectorAll(".post");
-const postBox = document.querySelector(".posts");
+const postBox = document.querySelectorAll(".post");
 const clickBox = document.querySelectorAll(".title-wrap");
 
 const postFetch = fetch("/posts.json")
@@ -39,7 +39,7 @@ const postFetch = fetch("/posts.json")
     // [기존!!]
 
     const postData = data;
-    console.log(postData);
+    // console.log(postData);
     postData.forEach((e) => {
       const createPost = document.createElement("div");
       createPost.classList.add("post");
@@ -60,32 +60,21 @@ const postFetch = fetch("/posts.json")
 
     <div class="writer-wrap">
       <img src="${e.userimgurl}" alt="댓글 작성자" />
-      <span></span>
+      <span>${e.cmtwriter}</span>
     </div>`;
       const posts = document.querySelector(".posts");
       posts.appendChild(createPost);
     });
   });
 
-// [NOTE] 포스트 전체가 하나의 링크로만..
+// // 게시물을 클릭하면 postid 가 일치하는 게시물 상세조회로 넘어가기
+// postBox.onclick = function () {
+//   window.location.href = `/html/post-read.html?post=${postid}`;
+// };
 
-// postBox.addEventListener("click", () => {
-//   window.location.href = `/html/post-read.html?postId=${postId}`;
-// });
-
-// document안에 어디든
-// 근데 post만 딱 클릭이 안됨
-// postID = undefined
-document.addEventListener("click", (event) => {
-  console.log(event.target);
-  if (event.target.classList.contains("post-info")) {
-    const postId = event.target.dataset.postid; // 클릭된 게시글의 ID 가져오기
-    console.log(event.target.dataset);
-    window.location.href = `/html/post-read.html?postid=${postId}`;
-  } else {
-    console.log("fail");
-  }
-});
+// let queryString = window.location.search;
+// let params = new URLSearchParams(queryString);
+// let postid = params.get("postid");
 
 // [NOTE] 날짜 형식에서 01 처럼 두 자리 맞추기 기능 추가해야함
 

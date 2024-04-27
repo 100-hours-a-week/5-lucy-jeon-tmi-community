@@ -18,7 +18,7 @@
 
     "posttext": "본문내용입니다.",
     "postimgurl": "/img/3.png",
-    "cmts-list": [
+    "cmtslist": [
       {
         "cmtwriter": "댓글 작성자 1",
         "cmtwriterimg": "/img/3.png",
