@@ -1,0 +1,14 @@
+[
+  { "email": "user1@email.com", "password": "User12!@", "nickname": "user1" },
+  {
+    "email": "lucydddd2@email.com",
+    "password": "Fntl133!",
+    "nickname": "Lucy3"
+  },
+  {
+    "email": "lucy@email.com",
+    "password": "Fntl133!dd",
+    "nickname": "Luddcy3"
+  },
+  { "email": "user2@email.com", "password": "User12!@", "nickname": "user2" }
+]

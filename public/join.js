@@ -1,6 +1,7 @@
 // import { response } from "express";
-
-// import { response } from "express";
+// TODO
+// [] 프로필 사진 업로드 기능
+// [] 회원가입 정보 json에 업데이트
 
 const joinForm = document.querySelector(".info-form");
 const emailInput = document.getElementById("email-input");
@@ -139,6 +140,7 @@ joinBnt.addEventListener("click", (event) => {
   if ((joinBnt.style.background = "#7F6AEE")) {
     join();
     window.location.href = "/html/login.html";
+    console.log("done");
   }
 });
 
@@ -182,7 +184,7 @@ function join() {
     password: pwInput.value,
     nickname: nickInput.value,
   };
-  fetch("/user.json", {
+  fetch("/joinApi", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

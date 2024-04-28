@@ -1,27 +1,35 @@
 // const { response } = require("express");
+// TODO
+// [V] 로그인 버튼 disabled로 관리하기
 
-const loginForm = document.querySelector("#login-form");
+const loginForm = document.querySelector("#login-fnporm");
 const emailInput = document.querySelector("#email-input");
 const pwInput = document.querySelector("#pw-input");
 const helpTxt = document.querySelector("#helper-text");
 const loginBnt = document.querySelector("#login-bnt");
 
-let emailValid;
-let pwValid;
+let pwValid = false;
+
+// 이메일 && 로그인 유효성 통과 확인
 const ValidCheck = () => {
   if (emailValid && pwValid) {
+    loginBnt.removeAttribute("disabled");
     loginBnt.style.background = "#7F6AEE";
-    helpTxt.classList.add("hidden");
-    loginBnt.addEventListener("click", (event) => {
-      event.preventDefault();
-      loginBnt.style.background == "#7F6AEE";
-      window.location.href = "/html/post-list.html";
-    });
   } else {
+    loginBnt.setAttribute("disabled", true);
     loginBnt.style.background = "#ACA0EB";
   }
 };
 
+// 버튼색이 바뀌면 페이지 이동 가능
+loginBnt.addEventListener("click", (event) => {
+  event.preventDefault();
+  if ((loginBnt.style.background = "#7F6AEE")) {
+    window.location.href = "/html/post-list.html";
+  }
+});
+
+// 이메일 유효성 확인
 const emailCheck = (event) => {
   let emailRex = /^\w+@\w+\.[a-zA-Z]/i;
   let emailVal = emailInput.value;
@@ -42,6 +50,7 @@ const emailCheck = (event) => {
   }
 };
 
+// 비밀번호 유효성 확인
 const pwCheck = (event) => {
   const pwRex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/;
@@ -90,6 +99,7 @@ const pwCheck = (event) => {
 
 emailInput.addEventListener("input", emailCheck);
 pwInput.addEventListener("input", pwCheck);
+
 emailInput.addEventListener("focus", () => {
   emailCheck();
   ValidCheck();
