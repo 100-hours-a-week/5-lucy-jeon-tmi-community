@@ -5,18 +5,31 @@ const __dirname = path.resolve();
 import bodyParser from "body-parser";
 import fileSystem from "fs";
 import readlineSyncModule from "readline-sync";
+import cors from "cors";
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const publicPath = __dirname + "/public";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(express.static(publicPath));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(publicPath, "html", "login.html"));
+});
+
+app.post("/userData", (req, res) => {
+  try {
+    const userInfo = fileSystem.readFileSync("user.json", "utf-8");
+    const jsonUsers = JSON.parse(userInfo);
+    let users = [...jsonUsers];
+    JSON.stringify(users);
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.get("/join", (req, res) => {

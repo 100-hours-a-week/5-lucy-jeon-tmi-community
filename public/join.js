@@ -1,7 +1,8 @@
 // import { response } from "express";
 // TODO
 // [] 프로필 사진 업로드 기능
-// [] 회원가입 정보 json에 업데이트
+// [V] 회원가입 정보 json에 업데이트
+// [V] 유효성 검사 오류 해결
 
 const joinForm = document.querySelector(".info-form");
 const emailInput = document.getElementById("email-input");
@@ -29,11 +30,16 @@ const emailCheck = (event) => {
       "* 올바른 이메일 주소 형식을 입력해주세요. (예 : example@example.com)";
     emailDone = false;
   } else if (!already) {
-    const fetchEmail = fetch("/user.json")
+    fetch("/userData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         const email = data.map((e) => e.email);
-        const alreadyEmail = email.find((e) => e == emailValue);
+        const alreadyEmail = email.find((e) => e === emailValue);
         if (alreadyEmail) {
           emailHelper.classList.remove("hidden");
           emailHelper.innerText = "중복된 이메일입니다.";
@@ -43,9 +49,6 @@ const emailCheck = (event) => {
           emailDone = true;
         }
       });
-  } else {
-    emailHelper.classList.add("hidden");
-    emailDone = true;
   }
 };
 
@@ -104,7 +107,12 @@ const nickCheck = (event) => {
   } else {
     let already = false;
     if (!already) {
-      fetch("/user.json")
+      fetch("/userData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
           const nickname = data.map((e) => e.nickname);
@@ -118,9 +126,6 @@ const nickCheck = (event) => {
             nickDone = true;
           }
         });
-    } else {
-      nickHelper.classList.add("hidden");
-      nickDone = true;
     }
   }
 };
@@ -131,7 +136,10 @@ const checkDone = () => {
   if (emailDone && pwDone && pwCheckDone && nickDone) {
     joinBnt.removeAttribute("disabled");
     joinBnt.style.background = "#7F6AEE";
-  } else joinBnt.setAttribute("disabled", true);
+  } else {
+    joinBnt.setAttribute("disabled", true);
+    joinBnt.style.background = "#ACA0EB";
+  }
 };
 
 // 버튼색이 바뀌면 버튼 이벤트 추가

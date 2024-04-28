@@ -67,10 +67,16 @@ const pwCheck = (event) => {
       "비밀번호는 8자 이상 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.";
     pwValid = false;
   } else if (!joinChecked) {
-    fetch("/user.json")
+    fetch("/userData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         const userData = data;
+        console.log(userData);
         // input 값과 동일한 user 찾기
         const userEmail = data.map((e) => e.email);
         const matchEmail = userEmail.find((e) => e == emailInput.value);
@@ -88,12 +94,12 @@ const pwCheck = (event) => {
             helpTxt.innerText = "비밀번호가 다릅니다.";
             pwValid = false;
           }
+        } else {
+          helpTxt.classList.remove("hidden");
+          helpTxt.innerText = "가입되지 않은 이메일입니다";
+          pwValid = false;
         }
       });
-  } else {
-    helpTxt.classList.add("hidden");
-    pwValid = true;
-    console.log(pwValid);
   }
 };
 
