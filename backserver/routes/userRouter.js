@@ -2,6 +2,8 @@ const express = require("express");
 const userRouter = express.Router();
 const userController = require("../controllers/userControllers.js");
 
+userRouter.post("/userImg", userController.userImg);
+
 userRouter.post("/userData", userController.userData);
 userRouter.post("/join", userController.join);
 userRouter.post("/login", userController.login);

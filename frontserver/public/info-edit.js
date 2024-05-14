@@ -1,5 +1,20 @@
 // const { response } = require("express");
 const user = sessionStorage.getItem("userID");
+// 유저 프로필 이미지 가져오기
+const loginedUserImg = () => {
+  console.log(user);
+  fetch("http://localhost:4000/user/userImg", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userid: user }),
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      console.log(res);
+      return (headerImg.src = res.data.userImg);
+    });
+};
+loginedUserImg();
 
 const headerImg = document.getElementById("header-img");
 const email = document.querySelector(".email-text");
