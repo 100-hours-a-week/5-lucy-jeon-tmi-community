@@ -1,0 +1,51 @@
+[
+  {
+    "userid": 1,
+    "email": "user1@email.com",
+    "password": "Qwer!@333",
+    "nickname": "원상",
+    "userimg": "/img/wonsang.jpg"
+  },
+  {
+    "userid": 2,
+    "email": "test1@email.com",
+    "password": "Test123!@",
+    "nickname": "test1",
+    "userimg": "/img/yechan.jpg"
+  },
+  {
+    "userid": 3,
+    "email": "lucy@email.com",
+    "password": "Fntl123!@",
+    "nickname": "루시",
+    "userimg": "/img/sangyeop.jpg"
+  },
+  {
+    "userid": 4,
+    "email": "user@email.com",
+    "password": "rkdlq12!@A",
+    "nickname": "가입테스트",
+    "userimg": "/img/guangil.jpg"
+  },
+  {
+    "userid": 5,
+    "email": "abc@email.com",
+    "password": "Xptmxm!@1",
+    "nickname": "유저테스트",
+    "userimg": ""
+  },
+  {
+    "userid": 6,
+    "email": "test1@email.com1",
+    "password": "Qlalf123!",
+    "nickname": "test111",
+    "userimg": ""
+  },
+  {
+    "userid": 8,
+    "email": "Qwer2@email.com",
+    "password": "XPtmxm12!@",
+    "nickname": "테스트용입니다!",
+    "userimg": ""
+  }
+]

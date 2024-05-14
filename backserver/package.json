@@ -1,0 +1,21 @@
+{
+  "name": "project-name",
+  "version": "0.0.1",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "cros": "^1.0.1",
+    "debug": "^4.3.4",
+    "express": "^4.19.2",
+    "http-errors": "^2.0.0",
+    "Math": "^0.0.1-security",
+    "moment": "^2.30.1",
+    "node.js": "^0.0.1-security",
+    "require": "^0.4.4"
+  }
+}

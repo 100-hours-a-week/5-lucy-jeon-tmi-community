@@ -1,0 +1,31 @@
+.dropdown {
+  position: fixed;
+  display: none;
+  top: 80px;
+  left: 1118px;
+}
+
+.dropdown-wrap {
+  width: 163px;
+  height: 219px;
+  z-index: 1;
+}
+
+.dropdown-wrap a {
+  width: Hug (115px) px;
+  height: Hug (35px) px;
+  padding: 10px 24px 10px 24px;
+  gap: 8px;
+  opacity: 0px;
+
+  text-align: center;
+  background: #d9d9d9;
+  display: block;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #000000;
+}
+
+.dropdown-wrap a:hover {
+  background: #e9e9e9;
+}
