@@ -46,6 +46,13 @@ body {
   border-radius: 50%;
 }
 
+.header-wrap .img + .dropdown {
+  position: absolute;
+  display: none;
+  top: 80px;
+  left: 480px;
+}
+
 .header-wrap .header-bnt {
   width: 40px;
   height: 40px;

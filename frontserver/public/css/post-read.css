@@ -89,7 +89,7 @@
 
 .post-text {
   width: 100%;
-  height: 231px;
+  height: auto;
 }
 
 .post-status {
@@ -97,6 +97,7 @@
   flex-direction: row;
   justify-content: center;
   gap: 8px;
+  margin-top: 50px;
 }
 
 .post-status div {
