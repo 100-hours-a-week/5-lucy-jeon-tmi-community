@@ -1,0 +1,185 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+}
+
+.post-title {
+  font-family: Pretendard;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31.2px;
+  margin: 24px 0px 12px;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.writer-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.writer-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.post-info .writer {
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 19.5px;
+  text-align: left;
+}
+
+.post-info .date {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18.2px;
+  text-align: right;
+}
+
+.bnts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.cmt-edit-bnt,
+.cmt-del-bnt {
+  width: Hug (50px) px;
+  height: Hug (27px) px;
+  padding: 2px 12px 2px 12px;
+  border-radius: 8px;
+  border: 1px solid #aca0eb;
+}
+
+.post-wrap {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-img {
+  width: 100%;
+  /* height: 306px; */
+  margin-bottom: 24px;
+}
+
+.post-text {
+  width: 100%;
+  height: 231px;
+}
+
+.post-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+}
+
+.post-status div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 116px;
+  height: 77px;
+
+  text-align: center;
+  border-radius: 16px;
+  background: #d9d9d9;
+}
+
+.reply-form {
+  width: 592px;
+  height: 169px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+.reply-input {
+  border: none;
+  width: 544px;
+  height: 94px;
+}
+
+.reply-input::placeholder {
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21.15px;
+  text-align: left;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid #00000029;
+  margin: 24px 0px;
+}
+
+.reply-bnt {
+  width: 138px;
+  height: 39px;
+  border: #aca0eb;
+  border-radius: 16px;
+  background-color: #aca0eb;
+  color: white;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.cmt {
+  display: flex;
+  flex-direction: row;
+  width: 544px;
+  height: 65px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 8px;
+}
+.reply-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reply-writer-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.reply-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

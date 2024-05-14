@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <title>Login</title>
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <header class="header">
+      <div class="header-wrap">
+        <div class="title">아무 말 대잔치</div>
+      </div>
+    </header>
+
+    <section class="wrap">
+      <!-- 제목 -->
+      <div class="title">로그인</div>
+
+      <!-- 이메일 -->
+      <form class="login-form" id="login-form">
+        <div class="email-text">이메일</div>
+        <input
+          class="email-input"
+          id="email-input"
+          type="text"
+          placeholder="이메일을 입력하세요"
+        />
+
+        <!-- 비밀번호 -->
+        <div class="pw-text">비밀번호</div>
+        <input
+          class="pw-input"
+          id="pw-input"
+          type="text"
+          placeholder="비밀번호를 입력하세요"
+        />
+        <div class="helper-text hidden" id="helper-text">*helper text</div>
+
+        <button class="login-bnt" type="submit" id="login-bnt">로그인</button>
+      </form>
+
+      <a class="join" href="/html/join.html"> 회원가입 </a>
+    </section>
+    <script src="/login.js"></script>
+  </body>
+</html>
