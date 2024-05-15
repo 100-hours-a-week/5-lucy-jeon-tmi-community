@@ -1,32 +1,37 @@
 // const { response } = require("express");
-
 const user = sessionStorage.getItem("userID");
+
 // 유저 프로필 이미지 가져오기
 const userImg = () => {
-  console.log(user);
-  fetch("http://localhost:4000/user/userImg", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userid: user }),
-  })
-    .then((response) => response.json())
-    .then((res) => {
-      console.log(res);
-      return res.data.userImg === ""
-        ? (headerImg.src = "/img/profile_img.jpg")
-        : (headerImg.src = res.data.userImg);
-    });
+  if (!user) {
+    headerImg.src = "/img/profile_img.jpg";
+  } else {
+    console.log(user);
+    fetch("http://localhost:4000/user/userImg", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userid: user }),
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+        return res.data.userImg === ""
+          ? (headerImg.src = "/img/profile_img.jpg")
+          : (headerImg.src = res.data.userImg);
+      });
+  }
 };
-userImg();
+
 const headerImg = document.getElementById("header-img");
+userImg();
 
 const wrtBnt = document.getElementById("wrt-bnt");
 const title = document.querySelector(".post-title");
 const likes = document.querySelector(".likes");
 const cmts = document.querySelector(".cmts");
 const views = document.querySelector(".views");
-const postBox = document.querySelectorAll(".post");
-const clickBox = document.querySelectorAll(".title-wrap");
+// const postBox = document.querySelectorAll(".post");
+// const clickBox = document.querySelectorAll(".title-wrap");
 const dropDown = document.querySelector(".dropdown");
 
 // 게시글 불러오기
@@ -65,7 +70,11 @@ const postFetch = () => {
         const posts = document.querySelector(".posts");
         posts.appendChild(createPost);
         createPost.onclick = function () {
-          window.location.href = `/html/post-read.html?post=${post.postid}`;
+          if (!user) {
+            alert("로그인 후 이용해주세요");
+          } else {
+            window.location.href = `/html/post-read.html?post=${post.postid}`;
+          }
         };
       });
       userFetch();
@@ -109,7 +118,9 @@ postFetch();
 
 // 게시글 작성
 wrtBnt.addEventListener("click", () => {
-  window.location.href = "/html/post-write.html";
+  if (!user) {
+    alert("로그인 후 이용해주세요.");
+  } else window.location.href = "/html/post-write.html";
 });
 
 // 버튼 호버
@@ -120,9 +131,13 @@ wrtBnt.addEventListener("mouseout", () => {
   wrtBnt.style.background = "#ACA0EB";
 });
 
-// 프로필 클릭시
+// 드롭다운
 headerImg.addEventListener("click", () => {
-  dropDown.style.display == "block"
-    ? (dropDown.style.display = "none")
-    : (dropDown.style.display = "block");
+  if (!user) {
+    dropDown.style.display == "none";
+  } else {
+    dropDown.style.display == "block"
+      ? (dropDown.style.display = "none")
+      : (dropDown.style.display = "block");
+  }
 });

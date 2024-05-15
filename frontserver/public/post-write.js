@@ -1,4 +1,8 @@
 const user = sessionStorage.getItem("userID");
+if (!user) {
+  alert("로그인 후 접속해주세요");
+  window.location.href = "/";
+}
 // console.log(user);
 // 유저 프로필 이미지 가져오기
 const userImg = () => {
@@ -59,9 +63,13 @@ const headerImg = document.getElementById("header-img");
 
 headerImg.addEventListener("click", () => {
   const dropDown = document.querySelector(".dropdown");
-  dropDown.style.display == "block"
-    ? (dropDown.style.display = "none")
-    : (dropDown.style.display = "block");
+  if (!user) {
+    dropDown.style.display == "none";
+  } else {
+    dropDown.style.display == "block"
+      ? (dropDown.style.display = "none")
+      : (dropDown.style.display = "block");
+  }
 });
 
 // 게시글 추가 api

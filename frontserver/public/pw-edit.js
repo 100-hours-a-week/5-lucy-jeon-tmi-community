@@ -1,4 +1,8 @@
 const user = sessionStorage.getItem("userID");
+if (!user) {
+  alert("로그인 후 접속해주세요");
+  window.location.href = "/";
+}
 // 유저 프로필 이미지 가져오기
 const userImg = () => {
   console.log(user);
@@ -27,9 +31,13 @@ const pwCheckInput = document.querySelector(".pw-check-input");
 // 드롭다운
 headerImg.addEventListener("click", () => {
   const dropDown = document.querySelector(".dropdown");
-  dropDown.style.display == "block"
-    ? (dropDown.style.display = "none")
-    : (dropDown.style.display = "block");
+  if (!user) {
+    dropDown.style.display == "none";
+  } else {
+    dropDown.style.display == "block"
+      ? (dropDown.style.display = "none")
+      : (dropDown.style.display = "block");
+  }
 });
 
 let pwDone;

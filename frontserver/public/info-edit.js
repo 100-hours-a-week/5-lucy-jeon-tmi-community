@@ -1,5 +1,9 @@
 // const { response } = require("express");
 const user = sessionStorage.getItem("userID");
+if (!user) {
+  alert("로그인 후 접속해주세요");
+  window.location.href = "/";
+}
 // 유저 프로필 이미지 가져오기
 const loginedUserImg = () => {
   console.log(user);

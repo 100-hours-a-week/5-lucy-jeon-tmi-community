@@ -1,4 +1,8 @@
 const user = sessionStorage.getItem("userID");
+if (!user) {
+  alert("로그인 후 접속해주세요");
+  window.location.href = "/";
+}
 // 유저 프로필 이미지 가져오기
 const userImg = () => {
   console.log(user);
@@ -15,6 +19,7 @@ const userImg = () => {
         : (headerImg.src = res.data.userImg);
     });
 };
+
 userImg();
 
 const editBnt = document.querySelector(".edit-bnt");
@@ -29,9 +34,13 @@ const headerImg = document.getElementById("header-img");
 
 headerImg.addEventListener("click", () => {
   const dropDown = document.querySelector(".dropdown");
-  dropDown.style.display == "block"
-    ? (dropDown.style.display = "none")
-    : (dropDown.style.display = "block");
+  if (!user) {
+    dropDown.style.display == "none";
+  } else {
+    dropDown.style.display == "block"
+      ? (dropDown.style.display = "none")
+      : (dropDown.style.display = "block");
+  }
 });
 
 // 수정하고자 하는 게시글 정보 불러오기
