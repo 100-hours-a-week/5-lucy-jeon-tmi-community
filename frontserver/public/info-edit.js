@@ -11,7 +11,9 @@ const loginedUserImg = () => {
     .then((response) => response.json())
     .then((res) => {
       console.log(res);
-      return (headerImg.src = res.data.userImg);
+      return res.data.userImg === ""
+        ? (headerImg.src = "/img/profile_img.jpg")
+        : (headerImg.src = res.data.userImg);
     });
 };
 loginedUserImg();
@@ -48,7 +50,10 @@ const userFetch = () => {
       );
       nickInput.value = loginedUser.nickname;
       email.innerText = loginedUser.email;
-      userImg.src = loginedUser.userimg;
+      userImg.src =
+        loginedUser.userimg === ""
+          ? (headerImg.src = "/img/profile_img.jpg")
+          : (headerImg.src = res.data.userImg);
       console.log(res, nickInput, email, userImg.src);
     });
 };

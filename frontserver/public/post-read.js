@@ -10,7 +10,9 @@ const userImg = () => {
     .then((response) => response.json())
     .then((res) => {
       console.log(res);
-      return (headerImg.src = res.data.userImg);
+      return res.data.userImg === ""
+        ? (headerImg.src = "/img/profile_img.jpg")
+        : (headerImg.src = res.data.userImg);
     });
 };
 userImg();
@@ -133,6 +135,7 @@ modalConBnt.addEventListener("click", () => {
   }
 });
 
+// 게시글 수정 && 삭제
 postInfo.addEventListener("click", (event) => {
   // 수정버튼 누르면 이동
   if (event.target.id == "edit-bnt") {
@@ -195,7 +198,7 @@ function fetchPostAndCmt() {
     <!-- 본문 -->
     <div class="post-wrap">
         <img class="post-img" src="${matchPost.postimg === "" ? "" : matchPost.postimg}" alt="${matchPost.postimg === "" ? "" : "본문 이미지"}" />
-        <div class="post-text">${matchPost.content}</div>
+        <div style="white-space: pre-wrap;" class="post-text">${matchPost.content}</div>
 
         <div class="post-status">
           <div class="views">
@@ -255,7 +258,8 @@ function postUser() {
           user && parseInt(user.userid) === parseInt(postUserNick.innerText)
       );
       postUserNick.innerText = postUser.nickname;
-      postUserImg.src = postUser.userimg;
+      postUserImg.src =
+        postUser.userimg === "" ? "/img/profile_img.jpg" : postUser.userimg;
       // console.log(postUser);
     });
 }
@@ -295,12 +299,16 @@ function cmtUser() {
           const parts = e.split("/");
           const lastPart = parts[parts.length - 1];
           if (user.userid === parseInt(lastPart)) {
-            return user.userimg;
+            return user;
           } else {
             console.log("사용자 프로필 사진을 찾을 수 없습니다.");
           }
         });
-        cmtsUserImg[index].src = findCmtImg.userimg;
+        console.log(findCmtImg);
+        cmtsUserImg[index].src =
+          findCmtImg.userimg === ""
+            ? "/img/profile_img.jpg"
+            : findCmtImg.userimg;
       });
       clickEdit();
       clickDel();

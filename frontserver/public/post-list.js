@@ -12,7 +12,9 @@ const userImg = () => {
     .then((response) => response.json())
     .then((res) => {
       console.log(res);
-      return (headerImg.src = res.data.userImg);
+      return res.data.userImg === ""
+        ? (headerImg.src = "/img/profile_img.jpg")
+        : (headerImg.src = res.data.userImg);
     });
 };
 userImg();
@@ -66,6 +68,7 @@ const postFetch = () => {
           window.location.href = `/html/post-read.html?post=${post.postid}`;
         };
       });
+      userFetch();
     });
 };
 
@@ -91,7 +94,7 @@ const userFetch = () => {
         // console.log(findUser, e);
         if (findUser) {
           writer[index].innerHTML = `
-          <img src="${findUser.userimg}" "alt="댓글 작성자" />
+          <img src="${findUser.userimg === "" ? "/img/profile_img.jpg" : findUser.userimg}" "alt="댓글 작성자" />
           <span>${findUser.nickname}</span>`;
         } else {
           console.log("사용자를 찾지 못함");
@@ -101,7 +104,6 @@ const userFetch = () => {
 };
 
 postFetch();
-userFetch();
 
 // ---- 구분 -----
 
