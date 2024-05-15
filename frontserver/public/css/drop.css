@@ -1,9 +1,9 @@
-.dropdown {
-  position: fixed;
+/* .dropdown {
+  position: absolute;
   display: none;
   top: 80px;
   left: 1118px;
-}
+} */
 
 .dropdown-wrap {
   width: 163px;

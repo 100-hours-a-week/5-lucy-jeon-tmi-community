@@ -1,5 +1,20 @@
 const user = sessionStorage.getItem("userID");
-console.log(user);
+// console.log(user);
+// 유저 프로필 이미지 가져오기
+const userImg = () => {
+  console.log(user);
+  fetch("http://localhost:4000/user/userImg", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userid: user }),
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      console.log(res);
+      return (headerImg.src = res.data.userImg);
+    });
+};
+userImg();
 
 const titleInput = document.getElementById("title-input");
 const contentInput = document.getElementById("content-input");

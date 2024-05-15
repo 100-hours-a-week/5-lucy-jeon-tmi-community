@@ -33,7 +33,7 @@ function updatePost(req, res) {
 
     const newPost = {
       postid: newPostId,
-      userid: req.body.user,
+      userid: parseInt(req.body.user),
       title: req.body.title,
       content: req.body.content,
       postimg: "",
@@ -105,13 +105,13 @@ function updateCmt(req, res) {
     const matchPost = posts.find((post) => post.postid === parseInt(params));
     const cmts = matchPost.cmtDetail;
     const cmtIds = cmts.map((cmt) => parseInt(cmt.commentid));
-    const MaxCmtId = Math.max(...cmtIds);
+    const MaxCmtId = cmtIds.length < 1 ? 0 : Math.max(...cmtIds);
     const newCmtId = MaxCmtId + 1;
     console.log(cmts, cmtIds, MaxCmtId, newCmtId);
 
     const newCmt = {
       commentid: newCmtId,
-      userid: req.body.userID,
+      userid: parseInt(req.body.userID),
       content: req.body.content,
       date: moment(req.body.date).format("YYYY-MM-DD hh:mm:ss"),
     };

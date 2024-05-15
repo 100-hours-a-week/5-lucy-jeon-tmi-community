@@ -1,5 +1,19 @@
 const user = sessionStorage.getItem("userID");
-
+// 유저 프로필 이미지 가져오기
+const userImg = () => {
+  console.log(user);
+  fetch("http://localhost:4000/user/userImg", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userid: user }),
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      console.log(res);
+      return (headerImg.src = res.data.userImg);
+    });
+};
+userImg();
 const headerBnt = document.querySelector("#header-bnt");
 const headerImg = document.querySelector("#header-img");
 const postInfo = document.querySelector("#post-info");
@@ -180,7 +194,7 @@ function fetchPostAndCmt() {
 
     <!-- 본문 -->
     <div class="post-wrap">
-        <img class="post-img" src="${matchPost.postimg}" alt="본문 이미지" />
+        <img class="post-img" src="${matchPost.postimg === "" ? "" : matchPost.postimg}" alt="${matchPost.postimg === "" ? "" : "본문 이미지"}" />
         <div class="post-text">${matchPost.content}</div>
 
         <div class="post-status">
@@ -314,16 +328,15 @@ const deletePost = () => {
 fetchPostAndCmt();
 
 // 댓글 창 입력시 버튼 색 변경 && disabled false
-
 const cmtInputCheck = () => {
   const cmtVal = cmtInput.value;
   if (cmtVal.length < 1) {
     console.log(cmtVal);
-    cmtBnt.setAttribute("disabled", true);
+    cmtBnt.disabled = true;
     cmtBnt.style.background = "#ACA0EB";
   } else {
     console.log(cmtVal);
-    cmtBnt.removeAttribute("disabled");
+    cmtBnt.disabled = false;
     cmtBnt.style.background = "#7F6AEE";
   }
 };
@@ -351,6 +364,8 @@ const updateCmt = () => {
 // 댓글 등록 && 댓글 수정 버튼
 cmtBnt.addEventListener("click", (event) => {
   event.preventDefault();
+  // if (cmtBnt.style.background === "#ACA0EB") {
+  //   // updqteCmt()가 실행되지 않도록하는 코드
   if (cmtBnt.innerText === "댓글 등록") {
     console.log("댓글 등록");
     updateCmt();

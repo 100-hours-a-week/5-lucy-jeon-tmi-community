@@ -18,6 +18,23 @@ function userData(req, res) {
   }
 }
 
+function userImg(req, res) {
+  try {
+    const userID = req.body.userid;
+    const loginUser = users.find(
+      (user) => user && parseInt(user.userid) === parseInt(userID)
+    );
+    console.log(userID, users, loginUser);
+    res.json({
+      status: 200,
+      message: "유저 이미지 불러오기 성공",
+      data: { userImg: loginUser.userimg },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // 이메일 가입여부 & 비밀번호 일치 여부 확인
 function login(req, res) {
   try {
@@ -181,6 +198,7 @@ function deleteUser(req, res) {
 
 module.exports = {
   userData,
+  userImg,
   login,
   join,
   emailCheck,
