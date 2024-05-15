@@ -10,7 +10,9 @@ const userImg = () => {
     .then((response) => response.json())
     .then((res) => {
       console.log(res);
-      return (headerImg.src = res.data.userImg);
+      return res.data.userImg === ""
+        ? (headerImg.src = "/img/profile_img.jpg")
+        : (headerImg.src = res.data.userImg);
     });
 };
 userImg();

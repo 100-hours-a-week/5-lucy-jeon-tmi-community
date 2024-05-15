@@ -38,8 +38,9 @@ function userImg(req, res) {
 // 이메일 가입여부 & 비밀번호 일치 여부 확인
 function login(req, res) {
   try {
-    const email = req.body.email;
-    const pw = req.body.pw;
+    const { email, pw } = req.body;
+    // const email = req.body.email;
+    // const pw = req.body.pw;
 
     const matchUser = users.find((user) => user && user.email === email);
     if (!matchUser) {
@@ -149,11 +150,11 @@ function join(req, res) {
 // 닉네임 수정
 function editNick(req, res) {
   const { userID, nick } = req.body;
-  console.log(userID, nick);
+  // console.log(userID, nick);
   const matchUser = users.find(
     (user) => user && user.userid === parseInt(userID)
   );
-  console.log(matchUser);
+  // console.log(matchUser);
   matchUser.nickname = nick;
 
   fs.writeFileSync(jsonUrl, JSON.stringify(users), "utf8");
@@ -166,11 +167,11 @@ function editNick(req, res) {
 
 function editPw(req, res) {
   const { userID, pw } = req.body;
-  console.log(userID, pw);
+  // console.log(userID, pw);
   const matchUser = users.find(
     (user) => user && user.userid === parseInt(userID)
   );
-  console.log(matchUser);
+  // console.log(matchUser);
   matchUser.password = pw;
 
   fs.writeFileSync(jsonUrl, JSON.stringify(users), "utf8");

@@ -10,10 +10,13 @@ const userImg = () => {
     .then((response) => response.json())
     .then((res) => {
       console.log(res);
-      return (headerImg.src = res.data.userImg);
+      return res.data.userImg === ""
+        ? (headerImg.src = "/img/profile_img.jpg")
+        : (headerImg.src = res.data.userImg);
     });
 };
 userImg();
+
 const headerBnt = document.querySelector("#header-bnt");
 const headerImg = document.querySelector("#header-img");
 const postInfo = document.querySelector("#post-info");
@@ -133,6 +136,7 @@ modalConBnt.addEventListener("click", () => {
   }
 });
 
+// 게시글 수정 && 삭제
 postInfo.addEventListener("click", (event) => {
   // 수정버튼 누르면 이동
   if (event.target.id == "edit-bnt") {
@@ -149,7 +153,7 @@ postInfo.addEventListener("click", (event) => {
 });
 
 // 게시물과 댓글 불러오기
-function fetchPostAndCmt() {
+const fetchPostAndCmt = () => {
   // 현재 url의 쿼리스트리를 분석
   const urlParams = new URLSearchParams(window.location.search);
   const params = urlParams.get("post");
@@ -195,7 +199,7 @@ function fetchPostAndCmt() {
     <!-- 본문 -->
     <div class="post-wrap">
         <img class="post-img" src="${matchPost.postimg === "" ? "" : matchPost.postimg}" alt="${matchPost.postimg === "" ? "" : "본문 이미지"}" />
-        <div class="post-text">${matchPost.content}</div>
+        <div style="white-space: pre-wrap;" class="post-text">${matchPost.content}</div>
 
         <div class="post-status">
           <div class="views">
@@ -235,10 +239,10 @@ function fetchPostAndCmt() {
       postUser();
       cmtUser();
     });
-}
+};
 
 // 유저정보 맞춰넣기
-function postUser() {
+const postUser = () => {
   fetch("http://localhost:4000/user/userData", {
     method: "POST",
     headers: {
@@ -255,13 +259,14 @@ function postUser() {
           user && parseInt(user.userid) === parseInt(postUserNick.innerText)
       );
       postUserNick.innerText = postUser.nickname;
-      postUserImg.src = postUser.userimg;
+      postUserImg.src =
+        postUser.userimg === "" ? "/img/profile_img.jpg" : postUser.userimg;
       // console.log(postUser);
     });
-}
+};
 
 // 댓글 유저정보 맞춰넣기
-function cmtUser() {
+const cmtUser = () => {
   fetch("http://localhost:4000/user/userData", {
     method: "POST",
     headers: {
@@ -295,17 +300,21 @@ function cmtUser() {
           const parts = e.split("/");
           const lastPart = parts[parts.length - 1];
           if (user.userid === parseInt(lastPart)) {
-            return user.userimg;
+            return user;
           } else {
             console.log("사용자 프로필 사진을 찾을 수 없습니다.");
           }
         });
-        cmtsUserImg[index].src = findCmtImg.userimg;
+        console.log(findCmtImg);
+        cmtsUserImg[index].src =
+          findCmtImg.userimg === ""
+            ? "/img/profile_img.jpg"
+            : findCmtImg.userimg;
       });
       clickEdit();
       clickDel();
     });
-}
+};
 
 // 게시물 삭제 요청
 const deletePost = () => {
