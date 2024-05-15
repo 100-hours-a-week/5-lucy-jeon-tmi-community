@@ -10,7 +10,7 @@
     "userid": 2,
     "email": "test1@email.com",
     "password": "Test123!@",
-    "nickname": "test1",
+    "nickname": "예찬",
     "userimg": "/img/yechan.jpg"
   },
   {
@@ -24,7 +24,7 @@
     "userid": 4,
     "email": "user@email.com",
     "password": "rkdlq12!@A",
-    "nickname": "가입테스트",
+    "nickname": "광일",
     "userimg": "/img/guangil.jpg"
   },
   {
@@ -32,7 +32,7 @@
     "email": "abc@email.com",
     "password": "Xptmxm!@1",
     "nickname": "유저테스트",
-    "userimg": ""
+    "userimg": "/img/1.png"
   },
   {
     "userid": 6,
