@@ -16,6 +16,7 @@ const userImg = () => {
     });
 };
 userImg();
+
 const headerBnt = document.querySelector("#header-bnt");
 const headerImg = document.querySelector("#header-img");
 const postInfo = document.querySelector("#post-info");
@@ -152,7 +153,7 @@ postInfo.addEventListener("click", (event) => {
 });
 
 // 게시물과 댓글 불러오기
-function fetchPostAndCmt() {
+const fetchPostAndCmt = () => {
   // 현재 url의 쿼리스트리를 분석
   const urlParams = new URLSearchParams(window.location.search);
   const params = urlParams.get("post");
@@ -238,10 +239,10 @@ function fetchPostAndCmt() {
       postUser();
       cmtUser();
     });
-}
+};
 
 // 유저정보 맞춰넣기
-function postUser() {
+const postUser = () => {
   fetch("http://localhost:4000/user/userData", {
     method: "POST",
     headers: {
@@ -262,10 +263,10 @@ function postUser() {
         postUser.userimg === "" ? "/img/profile_img.jpg" : postUser.userimg;
       // console.log(postUser);
     });
-}
+};
 
 // 댓글 유저정보 맞춰넣기
-function cmtUser() {
+const cmtUser = () => {
   fetch("http://localhost:4000/user/userData", {
     method: "POST",
     headers: {
@@ -313,7 +314,7 @@ function cmtUser() {
       clickEdit();
       clickDel();
     });
-}
+};
 
 // 게시물 삭제 요청
 const deletePost = () => {

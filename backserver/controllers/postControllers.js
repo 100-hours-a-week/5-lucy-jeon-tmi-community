@@ -61,10 +61,11 @@ function updatePost(req, res) {
 function editPost(req, res) {
   const posts = postJson();
 
-  const postID = req.body.postID;
-  const title = req.body.title;
-  const content = req.body.content;
-  const postImg = req.body.postImg;
+  const { postID, title, content, postImg } = req.body;
+  // const postID = req.body.postID;
+  // const title = req.body.title;
+  // const content = req.body.content;
+  // const postImg = req.body.postImg;
 
   const editPost = posts.find((post) => post.postid === postID);
   console.log(editPost);
@@ -139,9 +140,10 @@ function editCmt(req, res) {
   const posts = postJson();
   console.log(req.body);
 
-  const params = req.body.params;
-  const cmtID = parseInt(req.body.cmtId);
-  const content = req.body.content;
+  const { params, cmtID, content } = req.body;
+  // const params = req.body.params;
+  cmtID = parseInt(cmtId);
+  // const content = req.body.content;
 
   const matchPost = posts.find((post) => post.postid === parseInt(params));
   const cmts = matchPost.cmtDetail;
@@ -158,8 +160,9 @@ function editCmt(req, res) {
 
 function deleteCmt(req, res) {
   const posts = postJson();
-  const params = req.body.params;
-  const cmtID = parseInt(req.body.cmtId);
+  const { params, cmtID } = req.body;
+  // const params = req.body.params;
+  cmtID = parseInt(cmtID);
   const matchPost = posts.find((post) => post.postid === parseInt(params));
   const cmts = matchPost.cmtDetail;
   const matchCmt = cmts.find((cmt) => cmt.commentid === parseInt(cmtID));

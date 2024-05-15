@@ -9,10 +9,12 @@ const pwCheckHelper = document.getElementById("pw-check-helper");
 const nickHelper = document.getElementById("nickname-helper");
 const joinBnt = document.getElementById("join-bnt");
 
-let emailDone = false;
-let pwDone = false;
-let pwCheckDone = false;
-let nickDone = false;
+// let emailDone = false;
+// let pwDone = false;
+// let pwCheckDone = false;
+// let nickDone = false;
+
+let { emailDone, pwDone, pwCheckDone, nickDone } = false;
 
 // 이메일 유효성 검사
 const emailCheck = () => {

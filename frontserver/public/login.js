@@ -9,7 +9,7 @@ const loginBnt = document.querySelector("#login-bnt");
 let pwValid = false;
 
 // 가입된 이메일, 비밀번호 일치 여부 확인
-function loginCheck() {
+const loginCheck = () => {
   const loginInfo = {
     email: emailInput.value,
     pw: pwInput.value,
@@ -34,7 +34,7 @@ function loginCheck() {
         console.log(userID);
       }
     });
-}
+};
 
 // 이메일 && 로그인 유효성 통과 확인
 const ValidCheck = () => {
